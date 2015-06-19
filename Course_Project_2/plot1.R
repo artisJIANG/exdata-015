@@ -10,8 +10,6 @@ unzip("exdata_data_NEI_data.zip", exdir="./Data", overwrite = T)  # unzip for da
 NEI <- readRDS("Data/summarySCC_PM25.rds")
 SCC <- readRDS("Data/Source_Classification_Code.rds")
 
-# Samples data
-NEIsample <- NEI[sample(nrow(NEI), size = 1000, replace = F), ]
 
 # Aggregates
 Emissions <- aggregate(NEI[, 'Emissions'], by = list(NEI$year), FUN = sum)

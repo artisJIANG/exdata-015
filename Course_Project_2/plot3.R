@@ -17,25 +17,9 @@ SCC <- readRDS("Data/Source_Classification_Code.rds")
 
 library(ggplot2)
 
-
 # Baltimore City, Maryland == fips
 MD <- subset(NEI, fips == 24510)
 MD$year <- factor(MD$year, levels = c('1999', '2002', '2005', '2008'))
-
-png(filename = 'plot2.png')
-ggplot(data = MD, aes(x = year, y = log(Emissions))) + facet_grid(. ~ type) + guides(fill = F) + geom_boxplot(aes(fill = type)) + stat_boxplot(geom = 'errorbar') + ylab(expression(paste('Log', ' of PM'[2.5], ' Emissions'))) + xlab('Year') + ggtitle('Emissions per Type in Baltimore City, Maryland') + geom_jitter(alpha = 0.10)
-dev.off()
-
-
-# Baltimore City, Maryland == fips
-MD <- subset(NEI, fips == 24510)
-MD$year <- factor(MD$year, levels = c('1999', '2002', '2005', '2008'))
-
-png('plot3.png', width = 800, height = 500, units = 'px')
-ggplot(data = MD, aes(x = year, y = log(Emissions))) + facet_grid(. ~ type) + guides(fill = F) + geom_boxplot(aes(fill = type)) + stat_boxplot(geom = 'errorbar') + ylab(expression(paste('Log', ' of PM'[2.5], ' Emissions'))) + xlab('Year') + ggtitle('Emissions per Type in Baltimore City, Maryland') + geom_jitter(alpha = 0.10)
-ggplot(data = MD, aes(x = year, y = (Emissions))) + facet_grid(. ~ type) + guides(fill = F) + geom_boxplot(aes(fill = type)) + stat_boxplot(geom = 'errorbar') + ylab(expression(paste('Log', ' of PM'[2.5], ' Emissions'))) + xlab('Year') + ggtitle('Emissions per Type in Baltimore City, Maryland') + geom_jitter(alpha = 0.10)
-dev.off()
-
 
 ## for bar chart
 ggp <- ggplot(data = MD, aes( year, Emissions, fill=type, group=1)) +
@@ -46,7 +30,6 @@ ggp <- ggplot(data = MD, aes( year, Emissions, fill=type, group=1)) +
 	labs(x="year", y=expression("Total PM2.5 Emission (Tons)"))	+
 	labs(title="PM2.5 Emissions, Baltimore City 1999-2008 by Source Type") +
 	geom_smooth(size = 2, color = "black", linetype = 1, method = "lm", se = FALSE)
-
 print(ggp)
 
 
