@@ -4,7 +4,6 @@
 unzip("exdata_data_NEI_data.zip", exdir="./Data", overwrite = T)  # unzip for data files
 ## -----------------------------------------------------------------------------
 
-# Loads RDS
 ## This first line will likely take a few seconds. Be patient!
 NEI <- readRDS("Data/summarySCC_PM25.rds")
 SCC <- readRDS("Data/Source_Classification_Code.rds")
@@ -21,7 +20,7 @@ MD.df <- aggregate(MD.onroad[, 'Emissions'], by = list(MD.onroad$year), sum)
 colnames(MD.df) <- c('year', 'Emissions')
 
 png('plot5.png')
-g2 <- ggplot(data = MD.df, aes(x = year, y = Emissions, , group=1)) +
+g2 <- ggplot(data = MD.df, aes(x = year, y = Emissions, group=1)) +
 	geom_bar(aes(fill = year), stat = "identity", alpha=0.5) +
 	geom_line(aes(group = 1, size = 1, col = Emissions)) +
 	geom_point(aes(size = 2, col = Emissions)) +

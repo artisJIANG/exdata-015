@@ -5,7 +5,6 @@
 unzip("exdata_data_NEI_data.zip", exdir="./Data", overwrite = T)  # unzip for data files
 ## -----------------------------------------------------------------------------
 
-# Loads RDS
 ## This first line will likely take a few seconds. Be patient!
 NEI <- readRDS("Data/summarySCC_PM25.rds")
 SCC <- readRDS("Data/Source_Classification_Code.rds")
